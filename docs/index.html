@@ -17,17 +17,193 @@
   <link rel="shortcut icon" href="img/favicon-32x32.png" />
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.8.1/tachyons.min.css">
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 </head>
 <body class="system-sans-serif">
 
-  <div class="ma6-l ma4-m ma3">
-    <span class="f1-l f2-m f3 fw3 tc center dib w-100 lh-copy mb3">
-      Last Show Comedy
-    </span>
-    <div class="aspect-ratio aspect-ratio--16x9 mb4">
-      <div class="aspect-ratio--object cover" style="background:url(./img/social.jpg) center;"></div>
+  <div class="mh5-l mh4-m mh3">
+    <div class="f1-l f2-m f3 fw3 tc center dib w-100 mt5">
+      <img class="" src="./img/hero.png" />
+    </div>
+    <div class="mh6-l mh4-m mh3 mt5-l mt4-m mt3">
+      <div class="aspect-ratio aspect-ratio--16x9">
+        <div class="aspect-ratio--object cover" style="background:url(./img/social.jpg) center;"></div>
+      </div>
+    </div>
+    <div class="tc center mv4 f4 lh-copy">
+      <p>
+        <b>Every third Tuesday</b> of the month at <b>8:00 PM</b> (Doors at 7:30)
+        <br>
+        The Friend
+        <br>
+        2611 Hyperion Avenue, Silver Lake, CA
+      </p>
     </div>
   </div>
+
+  <!-- <div class="mh7-l mv4-l ma4-m ma3">
+    <div class="f1-l f2-m f3 fw3 tc center dib w-100 mb4">
+      <a href="/">BUY TICKETS HERE</a>
+    </div>
+  </div>   -->
+
+  <div class="mh7-l mv4-l ma4-m ma3">
+    <div class="f1-l f2-m f3 fw3 tc center dib w-100 mb4">
+      UPCOMING SHOWS
+    </div>
+    <ul class="list pl0  center">
+      <li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">
+        <div class="f4">
+          January 15th
+        </div>
+        <p>
+          Very funny people!!
+        </p>
+      </li>
+    </ul>
+  </div>  
+
+
+  <div class="mh7-l mv4-l ma4-m ma3">
+    <div class="f1-l f2-m f3 fw3 tc center dib w-100 mb4">
+      PREVIOUS SHOWS
+    </div>
+    <ul class="list pl0  center">
+      <li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">
+        <div class="f4">
+          November 20th
+        </div>
+        <p>
+          Stephanie Wain, Danielle Perez, Kaeli Quick, Emily Browning, Daniel Webb
+        </p>
+      </li>
+      <li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">
+        <div class="f4">
+          October 23rd
+        </div>
+        <p>
+          Selene Whittington, Duat Mai, Danielle Perez, Marie Watschke, Matthew Torkelson
+        </p>
+      </li>
+      <li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">
+        <div class="f4">
+          September 18th
+        </div>
+        <p>
+          Annick Adelle, Ron Chapman, Jerry Hernandez, Sophia Clearly, Papp Johnson
+        </p>
+      </li>
+      <li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">
+        <div class="f4">
+          August 21st
+        </div>
+        <p>
+          Corie Johnson, Jihan Sabir, Harper-Rose Drummond, Billy Ritter, Kelsey Malott, Kaseem Bentley
+        </p>
+      </li>
+    </ul>
+  </div>  
+
+  <div class="mh7-l mv4-l ma4-m ma3">
+    <div class="w-100 pv4 dib">
+      <div class="f1-l f2-m f3 fw3 tc center dib w-100 mb4">
+        TWITTER
+      </div>
+      <a class="twitter-timeline" href="https://twitter.com/lastshowcomedy?ref_src=twsrc%5Etfw" data-tweet-limit="3" data-chrome="noheader nofooter noborders">Tweets by lastshowcomedy</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <div class="w-100 pv4 dib">
+      <template id="instagram-template">
+        {{#each posts}}
+          <div class="fl w-50 w-33-ns pa2">
+            <a href="{{link}}" class="db aspect-ratio aspect-ratio--1x1 dim">
+              <span role="img" style="background-image:url({{images.low_resolution.url}});" class="bg-center cover aspect-ratio--object"></span>
+            </a>
+          </div>
+        {{/each}}
+      </template>
+      <div class="f1-l f2-m f3 fw3 tc center dib w-100 mb4">
+        INSTAGRAM
+      </div>
+      <div id="instagram" class="w-100 dib">
+      </div>
+      <script>
+        const Http = new XMLHttpRequest();
+        const url='https://api.instagram.com/v1/users/8237297207/media/recent/?access_token=8237297207.94f99f8.1ed512addb344cf99ad9bab9fc1e475b';
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = (e) => {
+          var res = JSON.parse(Http.responseText)
+          var data = res.data.slice(0, 6);
+
+          // Template.
+          var template = document.getElementById('instagram-template').innerHTML;
+          var renderInstagram = Handlebars.compile(template);
+          document.getElementById('instagram').innerHTML = renderInstagram({ posts: data });
+        }
+      </script>
+    </div>
+  </div>
+
+  <div class="mh7-l mv4-l ma4-m ma3">
+    <div class="f1-l f2-m f3 fw3 tc center dib w-100 mt5 mb3">
+      HOSTED BY
+    </div>
+    <div class="w-100 w-50-ns dib">
+      <div class="pa4 tc">
+        <img
+            src="img/carolyn.png"
+            class="br-100 h4 h5-ns mw5 dib" alt="avatar">
+        <div class="f5 f3-ns mv4 tc center">
+          Carolyn Racine
+        </div>
+        <p>
+        </p>
+      </div>
+    </div>
+    <div class="w-100 w-50-ns dib fr">
+      <div class="pa4 tc">
+        <img
+            src="img/andy.png"
+            class="br-100 h4 h5-ns mw5 dib" alt="avatar">
+        <div class="f5 f3-ns mv4 tc center">
+          Andy Jiang
+        </div>
+        <p>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="mc_embed_signup" class="pa4-l">
+    <form class="mw7 center pa4 br2-ns" action="https://andyjiang.us16.list-manage.com/subscribe/post?u=5739dcdd8731f66c9faadd2c7&amp;id=3877573229" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <fieldset class="cf bn ma0 pa0">
+          <legend class="pa0 f3 f2-ns fw3 mb3 tc">SUBSCRIBE TO OUR NEWSLETTER</legend>
+          <div class="f4-ns f5 tc black-80 center dib w-100">
+            to get our inside jokes.
+          </div>
+          <div class="mv4">
+            <label class="clip" for="email-address">Email Address</label>
+            <input id="mce-EMAIL" class="email f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns" placeholder="Your Email Address" type="email" name="EMAIL" value="" required>
+            <!-- To fight bots. -->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <input type="text" name="b_5739dcdd8731f66c9faadd2c7_3877573229" tabindex="-1" value="">
+            </div>
+            <input id="mc-embedded-subscribe" class="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-100 w-25-m w-20-l br2-ns br--right-ns" type="submit" value="Subscribe">
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </div>
+
+
+
+  <div class="mh7-l mv4-l ma4-m ma3 center tc">
+    For all inquiries please email lastshowcomedy@gmail.com
+  </div>
+
 
   <!-- FOOTER -->
   <footer class="pv4 ph3 ph5-ns tc center">
